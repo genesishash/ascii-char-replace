@@ -1,24 +1,31 @@
 (function() {
-  var lib, log, _,
-    __slice = [].slice;
-
-  log = function() {
-    var x;
-    x = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-    try {
-      return console.log.apply(console, x);
-    } catch (_error) {}
-  };
+  var map, transform, _;
 
   _ = require('wegweg')({
-    globals: false,
-    shelljs: false
+    globals: true
   });
 
-  module.exports = lib = {};
+  map = JSON.parse(_.reads(__dirname + '/../data/unicode-map.json'));
+
+  module.exports = transform = (function(string, level) {
+    var chars;
+    if (level == null) {
+      level = 50;
+    }
+    chars = string.split('');
+    chars = _.map(chars, function(item) {
+      if (map[item]) {
+        if (_.rand(1, 100) <= level) {
+          return _.first(_.shuffle(map[item]));
+        }
+      }
+      return item;
+    });
+    return chars.join('');
+  });
 
   if (!module.parent) {
-    log(/DEVEL/);
+    log(transform('This is the Zodiac speaking..'));
     process.exit(0);
   }
 
