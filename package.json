@@ -1,0 +1,16 @@
+{
+  "name": "ascii-char-replace",
+  "description": "replace characters in strings to similar ascii characters",
+  "version": "0.0.1",
+  "main": "./build/module.js",
+  "author": "taky@taky.com",
+  "repository": "tosadvisor/ascii-char-replace",
+  "keywords": [
+    "taky",
+    "ascii",
+    "characters"
+  ],
+  "dependencies": {
+    "wegweg": "^0.14.0"
+  }
+}
